@@ -1,0 +1,462 @@
+@font-face {
+    font-family: poppins;
+    src: url("Poppins-Medium.ttf");
+}
+
+@font-face {
+    font-family: thinpoppoins;
+    src: url("Poppins-Thin.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+body {
+    background-color: rgba(12, 45, 89, 0.84);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px ;
+    min-height: 1000px;
+    background: snow;
+    margin: 50px;
+    display: grid;
+    grid-template-columns: 1.1fr 2fr;
+    box-shadow: 0 35px 35px rgba(0,0,0,0.5);
+}
+.container .left_part {
+    position: relative;
+    background: #043565;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.contact {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact h2
+{
+    background: #87c4ff;
+    width: 100%;
+    color: #043565;
+    font-size: 1.5em;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.4em;
+}
+
+.profileTxt {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.profileTxt .imgBx{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all .2s ease-in-out;
+}
+.profileTxt .imgBx:hover {
+    transform: scale(1.1);
+}
+
+.bar:hover {
+    transform: scale(1.05);
+    z-index:99;
+}
+
+.box p:hover {
+    transform: scale(1.1);
+}
+
+.box h4:hover
+{
+    transform: scale(1.1);
+    border-bottom: 1px solid #043565;
+}
+
+.box:hover {
+    transform: scale(1.1);
+}
+
+.profileTxt .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.profileTxt h3 {
+    color: white;
+    font-size: 1.2em;
+    margin-top: 20px;
+    text-transform: uppercase;
+    align-self: start;
+    padding-left: 10px;
+    font-weight: 600;
+    line-height: 1em;
+}
+.profileTxt h3 span{
+    color: white;
+    font-size: 1em;
+    margin-top: 20px;
+    text-transform: lowercase;
+    font-weight: 400;
+    line-height: 1em;
+}
+
+.a_propos {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.a_propos h2
+{
+    background: #87c4ff;
+    width: 100%;
+    color: #043565;
+    font-size: 1.5em;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.4em;
+}
+
+.a_propos p
+{
+    color: white;
+    font-size: 1.2em;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.languages {
+    align-self: start;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.languages ul {
+    align-self: start;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.languages li{
+    list-style-type: none;
+    align-self: start;
+    width: 100%;
+    margin-bottom: 15px;
+    color: white
+}
+
+
+.languages .bar {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    background: black;
+    display: block;
+}
+.languages .bar div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #87c4ff;
+}
+
+
+@keyframes growingit {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 75%;
+    }
+}
+
+@keyframes growingang {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 80%;
+    }
+}
+.languages .bar .ang {
+    width: 80%;
+    animation: 1s ease-out 0s 1 growingang;
+}
+
+
+.languages .bar .it {
+    width: 75%;
+    animation: 2s ease-out 0s 1 growingit;
+}
+
+.languages h2 {
+    background: #87c4ff;
+    width: 100%;
+    color: #043565;
+    font-size: 1.5em;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.4em;
+}
+
+.loisirs {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loisirs h2
+{    width: 30%;
+
+    background: #87c4ff;
+    width: 100%;
+    color: #043565;
+    font-size: 1.5em;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.4em;
+}
+
+.loisirs span
+{
+    padding-left: 33px;
+    align-self: start;
+    font-size: 1.2em;
+    color: white;
+}
+
+.loisirs img {
+    height: 70px;
+    width: 70px;
+}
+
+.container .right_part {
+    position: relative;
+    background: #fff;
+    padding: 40px;
+}
+
+.aboutme {
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutme h1 {
+    font-weight: bolder;
+    color: #043565;
+    text-transform: uppercase;
+}
+
+.aboutme h1 span {
+    font-family: "thinpoppoins", sans-serif;
+    color: black;
+}
+
+.aboutme h2 {
+    font-weight: lighter;
+    font-size: 1.2em;
+}
+
+.line {
+    display: flex;
+    width: 25%;
+    border-bottom: #043565 solid 2px;
+}
+
+.formation h1{
+    border-bottom: #043565 solid 2px;
+}
+.formation img
+{
+    vertical-align: middle;
+    height: 70px;
+    width: 70px;
+}
+
+.formation .box {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0;
+}
+
+.formation .box .year {
+    min-width: 150px;
+}
+
+.formation .box .year h5 {
+    text-transform: uppercase;
+    color: #838383;
+    font-weight: 600;
+}
+
+.formation .desc {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+}
+
+.formation .desc h4 {
+    color: #043565;
+}
+.formation .desc p {
+font-size: smaller
+}
+
+.loisirs .fa {
+    color: #87c4ff;
+}
+
+.loisirs span {
+    align-items: center;
+}
+
+.fa {
+    margin: 15px;
+    color: #043565;
+}
+
+.loisirs .fa:hover {
+    transform: scale(1.3);
+    color: #a5cff8;
+}
+
+.formation .bar {
+    width: 80%;
+    display: block;
+}
+
+.formation .text {
+    color: black;
+}
+
+.languages .bar .ang {
+    width: 80%;
+    animation: 1s ease-out 0s 1 growingang;
+}
+
+
+.languages .bar .it {
+    width: 75%;
+    animation: 2s ease-out 0s 1 growingit;
+}
+
+@keyframes growinghtml {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 65%;
+    }
+}
+
+.html {
+    width: 65%;
+    animation: 2s ease-out 0s 1 growinghtml;
+}
+
+@keyframes growingc {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 90%;
+    }
+}
+
+.c {
+    width: 90%;
+    animation: 3s ease-out 0s 1 growingc;
+}
+
+@keyframes growingcpp {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 80%;
+    }
+}
+
+.cpp {
+    width: 80%;
+    animation: 2.4s ease-out 0s 1 growingcpp;
+}
+
+@keyframes growingpy {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 75%;
+    }
+}
+
+.py {
+    width: 75%;
+    animation: 2s ease-out 0s 1 growingpy;
+}
+
+@keyframes growinghs {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 50%;
+    }
+}
+
+.hs {
+    width: 50%;
+    animation: 1.4s ease-out 0s 1 growinghs;
+}
