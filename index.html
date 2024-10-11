@@ -311,6 +311,105 @@
                 cursor: auto;
             }
         }
+        .education {
+            background: #000000;
+            color: white;
+            padding: 100px 10%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education h2 {
+            font-size: 4rem;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .education-item:hover::before {
+            opacity: 1;
+        }
+
+        .education-item h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .education-year {
+            font-size: 1.2rem;
+
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .education-degree {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .education-item ul {
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .education-item li {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .education h2 {
+                font-size: 3rem;
+            }
+
+            .education-item h3 {
+                font-size: 1.8rem;
+            }
+
+            .education-year, .education-degree {
+                font-size: 1rem;
+            }
+
+            .education-item li {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -324,7 +423,7 @@
     <button id="musicToggle" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">🔊</button>
 
     <header class="header">
-        <h1>Making Your<br>Ideas Reals</h1>
+        <h1>Transforming<br>Ideas into Digital</h1>
         <div class="subtitle">Louis Villedieu</div>
         <div class="mouse-circle"></div>
         <div class="scroll-indicator" onclick="scrollToNextSection()">&#9660;</div>
@@ -350,42 +449,28 @@
         </div>
     </section>
 
-    <section class="timeline">
-        <div class="moving-gradient"></div>
-        <div class="timeline-item first">
-            <div class="content">
-                <div class="year">2020</div>
-                <div class="description">Joining the Epitech School</div>
+    <section class="education">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="education-item">
+                <h3>Epitech School</h3>
+                <p class="education-year">2020 - Present</p>
+                <p class="education-degree">Master's degree in Computer Science</p>
+                <ul>
+                    <li>Practical, project-based learning approach</li>
+                    <li>Expertise in various programming languages and technologies</li>
+                    <li>Focus on innovation and problem-solving skills</li>
+                </ul>
             </div>
-        </div>
-        <div class="timeline-item">
-            <div class="content">
-                <div class="year">2021</div>
-                <div class="description">Internship software developer at BCA</div>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="content">
-                <div class="year">2023</div>
-                <div class="description">Frontend developer for a french web3 startup Versity</div>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="content">
-                <div class="year">2023</div>
-                <div class="description">Web3 developer for working games a startup about gamification</div>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="content">
-                <div class="year">2024</div>
-                <div class="description">1 year of exchange with University of Québec (UQAC)</div>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="content">
-                <div class="year">Now</div>
-                <div class="description">Waiting for you</div>
+            <div class="education-item">
+                <h3>University of Québec (UQAC)</h3>
+                <p class="education-year">2024</p>
+                <p class="education-degree">1-year exchange program</p>
+                <ul>
+                    <li>International perspective in technology and computer science</li>
+                    <li>Advanced studies in AI, data science, and software engineering</li>
+                    <li>Collaborative projects with diverse international teams</li>
+                </ul>
             </div>
         </div>
     </section>
