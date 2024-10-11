@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making Your Ideas Reals</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            cursor: none;
+        }
+        .header {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, .7), rgb(0, 0, 0, .7)), 
+                              url('./hero_land.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1, .header .subtitle {
+            color: white;
+            z-index: 2;
+            mix-blend-mode: difference;
+        }
+        .header h1 {
+            font-size: 5vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        .header .subtitle {
+            font-size: 2vw;
+            font-weight: 900;
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+        }
+        .mouse-circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            position: fixed; /* Changed from absolute to fixed */
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999; /* Ensure it's always on top */
+            mix-blend-mode: difference;
+            transition: width 0.3s ease, height 0.3s ease; /* Smooth transition for size change */
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10; /* Ensure it's above the mouse circle */
+        }
+        .scroll-indicator:hover {
+            transform: translateX(-50%) translateY(-5px);
+        }
+        .who-am-i {
+            background: #000000; /* Changed to solid black background */
+            color: white;
+            padding: 100px 10%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+        }
+        .who-am-i::before { 
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: -25vw;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .who-am-i-image {
+            flex: 0 0 300px; /* Fixed width */
+            margin-right: 50px;
+            position: relative;
+            z-index: 1;
+        }
+        .who-am-i-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px; 
+        }
+        .who-am-i-content {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        .who-am-i h2 {
+            font-size: 4rem; /* Increased font size */
+            margin-bottom: 30px;
+        }
+        .who-am-i p {
+            font-size: 1.4rem; /* Increased font size */
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .timeline {
+            background-color: #000000;
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden; /* Add this to contain the moving gradient */
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 147px;
+            bottom: 130px;
+            width: 2px;
+            background-color: white;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 100px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0; /* Supprime la marge du dernier élément */
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover::before {
+            background-color: black;
+            box-shadow: 0 0 0 2px white;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+        .timeline-item.first::before {
+            border-radius: 0;
+        }
+        .timeline-item .content {
+            width: 45%;
+            transition: transform 0.3s ease;
+        }
+        .timeline-item:nth-child(odd) .content {
+            margin-left: auto;
+            text-align: left;
+            padding-left: 50px;
+        }
+        .timeline-item:nth-child(even) .content {
+            text-align: right;
+            padding-right: 50px;
+        }
+        .year {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .description {
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .timeline-item:hover .year,
+        .timeline-item:hover .description {
+            transform: scale(1.05);
+        }
+        .timeline {
+            position: relative;
+            overflow: hidden;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -25vw;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .timeline-item {
+            position: relative;
+            z-index: 1;
+        }
+        .moving-gradient {
+            position: absolute;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: moveGradient 20s ease infinite;
+        }
+        @keyframes moveGradient {
+            0%, 100% {
+                top: 0%;
+                left: -40%;
+            }
+            50% {
+                top: 0%;
+                left: 40%;
+            }
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 10vw;
+            }
+
+            .header .subtitle {
+                font-size: 4vw;
+                writing-mode: horizontal-tb;
+                position: static;
+                transform: none;
+                margin-top: 20px;
+            }
+
+            .who-am-i {
+                flex-direction: column;
+                padding: 50px 5%;
+            }
+
+            .who-am-i-image {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .who-am-i h2 {
+                font-size: 3rem;
+            }
+
+            .who-am-i p {
+                font-size: 1.2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+                top: 100px; /* Align with the top of the first square */
+                height: auto; /* Let the heissght be determined by top and bottom */
+            }
+
+            .timeline-item::before {
+                left: 20px;
+            }
+
+            .timeline-item.first::before {
+                top: 0;
+                width: 20px;
+                height: 20px;
+                border-radius: 0;
+            }
+
+            .timeline-item .content {
+                width: calc(100% - 40px);
+                margin-left: 40px;
+                padding-left: 20px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(even) .content {
+                margin-left: 40px;
+                text-align: left; /* Align text to left for even items */
+            }
+
+            .year {
+                font-size: 1.5rem; /* Slightly smaller font size */
+            }
+
+            .description {
+                font-size: 1rem; /* Slightly smaller font size */
+            }
+
+            .timeline-item:last-child {
+                margin-bottom: 0;
+            }
+
+            .mouse-circle, .mouse-circle-small {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Add this audio element at the beginning of your body -->
+    <audio id="backgroundMusic" loop>
+        <source src="./rizzlas-morning-vibes-180372.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Add this button somewhere visible on your page -->
+    <button id="musicToggle" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">🔊</button>
+
+    <header class="header">
+        <h1>Making Your<br>Ideas Reals</h1>
+        <div class="subtitle">Louis Villedieu</div>
+        <div class="mouse-circle"></div>
+        <div class="scroll-indicator" onclick="scrollToNextSection()">&#9660;</div>
+        <script>
+            function scrollToNextSection() {
+                const nextSection = document.querySelector('.who-am-i');
+                if (nextSection) {
+                    nextSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        </script>
+    </header>
+
+    <section class="who-am-i">
+        <div class="who-am-i-image">
+            <img src="./image 1.png" alt="Louis Villedieu">
+        </div>
+        <div class="who-am-i-content">
+            <h2>Who am I</h2>
+            <p>Hello! I'm Louis Villedieu, a passionate developer based in the stunning French Riviera.<br><br>
+                As a 5th-year student at Epitech, with international experience from my studies in Canada, I thrive on creating innovative and impactful digital solutions.<br>
+                <br>I'm currently working on ARDeco, an AR-powered interior decoration app boosted by AI. With a deep interest in mobile technologies, I'm committed to blending creativity with cutting-edge development.</p>
+        </div>
+    </section>
+
+    <section class="timeline">
+        <div class="moving-gradient"></div>
+        <div class="timeline-item first">
+            <div class="content">
+                <div class="year">2020</div>
+                <div class="description">Joining the Epitech School</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="content">
+                <div class="year">2021</div>
+                <div class="description">Internship software developer at BCA</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="content">
+                <div class="year">2023</div>
+                <div class="description">Frontend developer for a french web3 startup Versity</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="content">
+                <div class="year">2023</div>
+                <div class="description">Web3 developer for working games a startup about gamification</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="content">
+                <div class="year">2024</div>
+                <div class="description">1 year of exchange with University of Québec (UQAC)</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="content">
+                <div class="year">Now</div>
+                <div class="description">Waiting for you</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const header = document.querySelector('.header');
+        const mouseCircle = document.querySelector('.mouse-circle');
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+
+        document.addEventListener('mousemove', (e) => {
+            mouseCircle.style.left = e.clientX + 'px';  
+            mouseCircle.style.top = e.clientY + 'px';
+
+            if (header.contains(e.target)) {
+                if (scrollIndicator.matches(':hover')) {
+                    mouseCircle.style.width = '100px';
+                    mouseCircle.style.height = '100px';
+                } else {
+                    mouseCircle.style.width = '250px';
+                    mouseCircle.style.height = '250px';
+                }
+            } else {
+                mouseCircle.style.width = '50px';
+                mouseCircle.style.height = '50px';
+            }
+        });
+
+        // Optional: add subtle scaling effect on click
+        document.addEventListener('mousedown', () => {
+            mouseCircle.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            mouseCircle.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+
+        function scrollToNextSection() {
+            const nextSection = document.querySelector('.who-am-i');
+            if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Add this new code for music control
+        const audio = document.getElementById('backgroundMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        let isMusicPlaying = true;
+
+        // Try to play music immediately
+        audio.play().then(() => {
+            musicToggle.textContent = '🔊';
+        }).catch((error) => {
+            // Autoplay was prevented
+            isMusicPlaying = false;
+            musicToggle.textContent = '🔇';
+            console.log("Autoplay prevented:", error);
+        });
+
+        musicToggle.addEventListener('click', () => {
+            if (isMusicPlaying) {
+                audio.pause();
+                musicToggle.textContent = '🔇';
+            } else {
+                audio.play();
+                musicToggle.textContent = '🔊';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
+
+        // Start playing music on first user interaction if autoplay was prevented
+        document.body.addEventListener('click', () => {
+            if (!isMusicPlaying) {
+                audio.play();
+                musicToggle.textContent = '🔊';
+                isMusicPlaying = true;
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
